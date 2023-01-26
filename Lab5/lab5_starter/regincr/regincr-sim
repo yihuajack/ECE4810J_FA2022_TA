@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+#=========================================================================
+# regincr-sim <input-values>
+#=========================================================================
+
+import os
+import sys
+
+from pymtl3 import *
+from pymtl3.passes.backends.verilog import *
+
+# Hack to add project root to python path
+
+sim_dir = os.path.dirname( os.path.abspath( __file__ ) )
+while sim_dir:
+  if os.path.exists( sim_dir + os.path.sep + ".pymtl_sim_root" ):
+    sys.path.insert(0,sim_dir)
+    break
+  sim_dir = os.path.dirname(sim_dir)
+
+from regincr.RegIncrNstageRTL import RegIncrNstageRTL
+
+# Get list of input values from command line
+
+input_values = [ int(x,0) for x in sys.argv[1:] ]
+
+# Add some zero values to end of list of input values
+
+input_values.extend( [0]*5 )
+
+# Instantiate a 4-stage registered incrementer
+
+model = RegIncrNstageRTL( nstages=4 )
+model.elaborate()
+
+# Mark the top-level component for translation
+
+model.set_metadata( VerilogTranslationImportPass.enable, True )
+
+# Apply the default pass group
+
+model.apply( VerilogPlaceholderPass() )
+model = VerilogTranslationImportPass()( model )
+model.apply( DefaultPassGroup(textwave=True) )
+
+# Reset simulator
+
+model.sim_reset()
+
+# Apply input values and display output values
+
+for input_value in input_values:
+
+  # Write input value to input port
+
+  model.in_ @= input_value
+
+  # Evaluate combinational logic
+
+  model.sim_eval_combinational()
+
+  # Tick simulator one cycle
+
+  model.sim_tick()
+
+# Display text waveform
+
+model.print_textwave()
+

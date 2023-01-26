@@ -1,0 +1,88 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2757,         80]
+NotebookOptionsPosition[      2097,         62]
+NotebookOutlinePosition[      2530,         79]
+CellTagsIndexPosition[      2487,         76]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"image", "=", 
+  RowBox[{
+  "Import", "[", 
+   "\"\<F:/Documents/GitHub/ECE4810J_FA2022_TA/Lab3/lena.jpg\>\"", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.8738612862074704`*^9, 3.8738612971875153`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"5773606b-bd30-47ff-a9d6-89cb74e1edf1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DCT", "[", 
+   RowBox[{"x_", "?", "MatrixQ"}], "]"}], " ", ":=", " ", "\n", " ", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"FourierDCTMatrix", "[", "512", "]"}], "]"}], " ", ".", " ", "x", 
+   " ", ".", " ", 
+   RowBox[{"FourierDCTMatrix", "[", "512", "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"IDCT", "[", 
+   RowBox[{"x_", "?", "MatrixQ"}], "]"}], " ", ":=", " ", "\n", " ", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"FourierDCTMatrix", "[", 
+     RowBox[{"512", ",", "3"}], "]"}], "]"}], " ", ".", " ", "x", " ", ".", 
+   " ", 
+   RowBox[{"FourierDCTMatrix", "[", 
+    RowBox[{"512", ",", "3"}], "]"}]}]}]}], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"5155629a-f464-41e0-9081-8cedb345e4c8"],
+
+Cell[BoxData[{
+ RowBox[{"dctimage", " ", "=", " ", 
+  RowBox[{"DCT", "[", 
+   RowBox[{"ImageData", "[", "image", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"recoverimage", "=", " ", 
+  RowBox[{"IDCT", "[", "dctimage", "]"}]}]}], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"cb93d60d-a814-4e1d-bc03-e4716248839c"],
+
+Cell[BoxData[
+ RowBox[{"Image", "[", "recoverimage", "]"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"f3f2720f-4dda-4c8e-8f38-6b0e75d89f47"]
+},
+WindowSize->{571.8, 524.4},
+WindowMargins->{{278.4, Automatic}, {6.600000000000023, Automatic}},
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (2022\:5e742\:67084\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"89d0fd93-2c80-49a0-b556-d6105e235fba"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 304, 7, 62, "Input",ExpressionUUID->"5773606b-bd30-47ff-a9d6-89cb74e1edf1"],
+Cell[865, 29, 754, 19, 149, "Input",ExpressionUUID->"5155629a-f464-41e0-9081-8cedb345e4c8"],
+Cell[1622, 50, 321, 6, 64, "Input",ExpressionUUID->"cb93d60d-a814-4e1d-bc03-e4716248839c"],
+Cell[1946, 58, 147, 2, 43, "Input",ExpressionUUID->"f3f2720f-4dda-4c8e-8f38-6b0e75d89f47"]
+}
+]
+*)
+

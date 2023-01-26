@@ -1,0 +1,160 @@
+\documentclass[a4paper,12pt,twoside]{article}
+
+%------------------------------------------------------------------------%
+% Packages
+%\usepackage[UTF8, fntef, punct,fontset=windowsnew]{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage[small,bf]{caption}  % Package caption Warning: Unknown document class (or package), standard defaults will be used. See the caption package documentation for explanation.
+\usepackage{comment}
+\usepackage{cuted}  % provide `strip` environment
+\usepackage[shortlabels]{enumitem}
+\usepackage{epsfig,parskip}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{float}  % \usepackage{dblfloatfix}
+\usepackage[T1]{fontenc}
+% https://www.overleaf.com/learn/latex/Page_size_and_margins
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage[a4paper,left=1in,right=1in,top=0.25in,bottom=1in,
+    headheight=76.33466pt,
+    headsep=\dimexpr1in-62.33466pt\relax,
+    includehead
+]{geometry}
+\usepackage{graphicx} 
+\usepackage{grffile}
+\usepackage[hidelinks]{hyperref}
+% \usepackage[citebordercolor=white]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{overpic}
+\usepackage{setspace}
+\onehalfspacing
+%\doublespacing
+\usepackage{stfloats}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows, shapes, positioning, shadows, trees}
+%% the following commands are needed for some matlab2tikz features
+\usetikzlibrary{arrows.meta, fit, quotes, shapes.geometric}
+%\usetikzlibrary {circuits.ee.IEC}
+\usetikzlibrary{plotmarks}
+\usepgfplotslibrary{patchplots}
+
+%\usepackage{CJK}
+%\usepackage{CJKfntef}
+%\usepackage{subcaption}
+\usepackage{cleveref}
+\usepackage{multirow}
+\usepackage{mwe}
+\usepackage{outlines}
+\usepackage{pifont}
+\usepackage[subrefformat=parens,labelformat=parens]{subfig} %
+\usepackage{times}
+\usepackage{varwidth}
+% \usepackage{minted}   % For syntax highlighting
+% \usemintedstyle{tango}
+% \usepackage[square,numbers,sort&compress]{natbib}   % For Reference
+% \bibliographystyle{IEEEtran}
+% In most cases, biblatex is better than natbib
+\usepackage{biblatex}  % use this in Overleaf
+% \usepackage[backend=bibtex]{biblatex}  % add backend option to compile locally
+\addbibresource{ref.bib}  % if using biblatex
+\usepackage{background}
+\backgroundsetup{contents=\includegraphics{waterprint.jpg}, scale=0.8, opacity=0.1}
+%%%%%%%%%%%%%
+%\usepackage{amsmath,amsfonts,amssymb}
+%\usetikzlibrary{automata,positioning}
+%\usepackage{titleps}
+%\fancyhead[C]{Header}
+%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[LE,RO]{}
+\fancyhead[CE,CO]{\includegraphics[width=0.7\textwidth]{JILogo.png}}
+\fancyhead[RE,LO]{}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[CE,CO]{\thepage}
+\lfoot{\textit{ECE4810J \textbf{SoC Design} | Fall 2022}}
+\usepackage{titling}
+% \addtolength{\topmargin}{-64.33466pt}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+%\usepackage{minipage}
+%{\sethead{}{Header}{}\headrule}
+%\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+%------------------------------------------------------------------------%
+% Settings
+\definecolor{commentgreen}{RGB}{14,120,0}
+\definecolor{Cr}{RGB}{198,200,201}
+\definecolor{Au}{RGB}{212,175,55}
+\definecolor{Glass}{RGB}{160,233,238}
+\definecolor{Water}{RGB}{179,209,211}
+\definecolor{root}{RGB}{0, 138, 230}
+\definecolor{level1}{RGB}{179, 217, 255}
+\definecolor{child}{RGB}{240, 247, 255}
+\definecolor{NsfcBlue}{RGB}{0, 112, 192}
+\usepackage{ragged2e}
+
+\newcommand{\makemycolor}[2]{%
+    \pgfmathsetmacro{\hue}{(#1/100)^1.715*0.8}%
+    \definecolor{myhsbcolor}{hsb}{\hue,1,1}%
+    \textcolor{myhsbcolor}{#2}%
+}
+
+\tikzset{
+    basic/.style = {draw, text width=3cm, drop shadow, rounded corners=2pt},
+    root/.style = {basic, rounded corners=2pt, thick, align=center, fill={level1}},
+    level-2/.style = {basic, rounded corners=6pt, thick,align=center, fill={level1}, text width=3cm},
+    level-3/.style = {basic, thick, align=center, fill={child}, text width=1.8cm},
+    positivecharge/.pic={
+        \node[circle,ball color=Thistle,inner sep=0pt,minimum width=2.5ex] {+};
+        % This value 2.5ex is magically intentionally chosen; changing it will cause problems
+        % https://tex.stackexchange.com/questions/198869/tikz-set-of-1-d-point-charges
+    },
+    negativecharge/.pic={
+        \node[circle,ball color=AliceBlue,inner sep=0pt,minimum width=2.5ex] {-};
+    }
+}
+
+\lstset{
+    numbers=left, 
+    basicstyle=\scriptsize, 
+    commentstyle=\color{commentgreen},
+    keywordstyle=\bf\color{blue},
+    language=matlab, 
+    frame=shadowbox,
+    rulesepcolor=\color{gray},
+    flexiblecolumns=true
+}
+\newcommand\caesura{$\mkern -8.5mu\raise -.2ex\hbox{\rotatebox[]{180}{\`}}\ $}
+\author{Author}
+\title{Title}
+\date{September 3, 2022}
+
+\begin{document}
+%\doublespacing
+\maketitle
+\thispagestyle{fancy}
+\lipsum[1-5] \cite{10.5555/3207796}
+% \bibliography{ref}  % if using natbib
+\printbibliography  % if using biblatex
+\end{document}
+
+% Template Change Log %
+% 2022-09-03 Modified by Yihua Liu %

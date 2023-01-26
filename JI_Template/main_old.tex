@@ -1,0 +1,167 @@
+\documentclass[a4paper,12pt]{article}
+
+%------------------------------------------------------------------------%
+% Packages
+%\usepackage[UTF8, fntef, punct,fontset=windowsnew]{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{setspace}
+\onehalfspacing
+%\doublespacing
+\usepackage{booktabs}
+\usepackage[small,bf]{caption}  % Package caption Warning: Unknown document class (or package), standard defaults will be used. See the caption package documentation for explanation.
+\usepackage{cite}
+\usepackage{cuted}  % provide `strip` environment
+\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{epsfig,color,parskip}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{float}  % \usepackage{dblfloatfix}
+% \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{tikz}
+%\usepackage{xcolor}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+\usepackage{stfloats}
+\usepackage{float}
+\usepackage{overpic}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{grffile}
+
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,  fit,  positioning,  quotes,  shapes.geometric}
+\usepackage{textcomp}
+\usepackage[a4paper, left = 3.2cm, right = 3.2cm, top = 2.54cm, bottom = 2.54cm, margin=1in,headsep=0.5in]{geometry}
+\usepackage{xcolor}
+% \usepackage[citebordercolor = white]{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{wrapfig,lipsum,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+
+%\usepackage{CJK}
+%\usepackage{CJKfntef}
+%\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{outlines}
+\usepackage{varwidth}
+\usepackage{times}
+\usepackage{mwe}
+\usepackage[subrefformat=parens,labelformat=parens]{subfig} %
+\usepackage{booktabs} 
+\usepackage{cleveref}
+% \usepackage{minted}   % For syntax highlighting
+% \usemintedstyle{tango}
+\usepackage{caption}
+\usepackage[square,numbers,sort&compress]{natbib}   % For Reference
+\usepackage{multirow}
+\usepackage{background}
+\backgroundsetup{contents=\includegraphics{waterprint.jpg}, scale=0.8, opacity=0.1}
+%%%%%%%%%%%%%
+%\usepackage{amsmath,amsfonts,amssymb}
+%\usetikzlibrary{automata,positioning}
+%\usepackage{fancyhdr}
+%\usepackage{titleps}
+%\fancyhead[C]{Header}
+%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[LE,RO]{}
+\fancyhead[CE,CO]{\includegraphics[width = 0.7\textwidth]{JILogo.png}}
+\fancyhead[RE,LO]{}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[CE,CO]{\thepage}
+\lfoot{\textit{ECE 4810J \textbf{SoC Design} | Fall 2022}}
+\usepackage{titling}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+
+%\usepackage{minipage}
+%{\sethead{}{Header}{}\headrule}
+%\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+%------------------------------------------------------------------------%
+% Settings
+\definecolor{commentgreen}{RGB}{14,120,0}
+\definecolor{Cr}{RGB}{198,200,201}
+\definecolor{Au}{RGB}{212,175,55}
+\definecolor{Glass}{RGB}{160,233,238}
+\definecolor{Water}{RGB}{179,209,211}
+\definecolor{root}{RGB}{0, 138, 230}
+\definecolor{level1}{RGB}{179, 217, 255}
+\definecolor{child}{RGB}{240, 247, 255}
+\usepackage{ragged2e}
+
+\newcommand{\makemycolor}[2]{%
+    \pgfmathsetmacro{\hue}{(#1/100)^1.715*0.8}%
+    \definecolor{myhsbcolor}{hsb}{\hue,1,1}%
+    \textcolor{myhsbcolor}{#2}%
+}
+
+%% the following commands are needed for some matlab2tikz features
+%\usetikzlibrary {arrows.meta}
+%\usetikzlibrary {circuits.ee.IEC}
+%\usetikzlibrary{plotmarks}
+%\usepgfplotslibrary{patchplots}
+
+\tikzset{
+    basic/.style = {draw, text width=3cm, drop shadow, rounded corners=2pt},
+    root/.style = {basic, rounded corners=2pt, thick, align=center, fill={level1}},
+    level-2/.style = {basic, rounded corners=6pt, thick,align=center, fill={level1}, text width=3cm},
+    level-3/.style = {basic, thick, align=center, fill={child}, text width=1.8cm},
+    positivecharge/.pic={
+        \node[circle,ball color=Thistle,inner sep=0pt,minimum width=2.5ex] {+};
+        % This value 2.5ex is magically intentionally chosen, changing it will cause problems
+        % https://tex.stackexchange.com/questions/198869/tikz-set-of-1-d-point-charges
+    },
+    negativecharge/.pic={
+        \node[circle,ball color=AliceBlue,inner sep=0pt,minimum width=2.5ex] {-};
+    }
+}
+
+\lstset{
+    numbers=left, 
+    basicstyle=\scriptsize, 
+    commentstyle=\color{commentgreen},
+    keywordstyle=\bf\color{blue},
+    language=matlab, 
+    frame=shadowbox,
+    rulesepcolor=\color{gray},
+    flexiblecolumns=true
+}
+\newcommand\caesura{$\mkern -8.5mu\raise -.2ex\hbox{\rotatebox[]{180}{\`}}\ $}
+\usepackage{graphicx}
+%\usepackage[table,xcdraw]{xcolor}
+\definecolor{NsfcBlue}{RGB}{0, 112, 192}
+\title{Title}
+\date{}
+
+\begin{document}
+%\doublespacing
+\maketitle
+\thispagestyle{fancy}
+\setlength{\headsep}{0.8in}
+
+
+\end{document}
